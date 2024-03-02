@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if sh -c 'hyprctl monitors | grep "@165"'; then
+  echo a
+  hyprctl --batch "\
+    keyword monitor eDP-1,2560x1600@60,auto,1.33333; \
+    keyword monitor eDP-2,2560x1600@60,auto,1.33333"
+  echo b
+else
+  echo c
+  hyprctl --batch "\
+    keyword monitor eDP-1,2560x1600@165,auto,1.33333; \
+    keyword monitor eDP-2,2560x1600@165,auto,1.33333"
+  echo d
+fi

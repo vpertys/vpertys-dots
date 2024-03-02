@@ -1,0 +1,7 @@
+#/bin/sh
+
+if sh -c 'hyprctl clients | grep "at: 1435,905"'; then
+  hyprctl dispatch movewindowpixel 0 300,title:^'(cava)'$
+else
+  hyprctl -- dispatch movewindowpixel 0 -300,title:^'(cava)'$
+fi

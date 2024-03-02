@@ -1,0 +1,18 @@
+#!/bin/sh
+
+currentval=$(hyprctl getoption animations:enabled | grep 'int: ' | cut -d' ' -f2)
+
+if [ $currentval -eq 1 ]; then
+  hyprctl --batch "\
+    keyword animations:enabled false; \
+    keyword decoration:drop_shadow false; \
+    keyword decoration:blur:enabled false; \
+    keyword decoration:rounding 0"
+else
+  hyprctl --batch "\
+    keyword animations:enabled true; \
+    keyword decoration:drop_shadow true; \
+    keyword decoration:blur:enabled true; \
+    keyword decoration:rounding 10"
+fi
+

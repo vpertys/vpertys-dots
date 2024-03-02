@@ -1,0 +1,11 @@
+#!/bin/sh
+
+currentval=$(hyprctl getoption general:allow_tearing | grep 'int: ' | cut -d' ' -f2)
+
+if [ $currentval -eq 1 ]; then
+  hyprctl keyword general:allow_tearing false
+  notify-send -t 1000 hyprctl "Disabled Tearing"
+else
+  hyprctl keyword general:allow_tearing true
+  notify-send -t 1000 hyprctl "Enabled Tearing"
+fi

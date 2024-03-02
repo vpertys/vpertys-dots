@@ -1,0 +1,17 @@
+#!/bin/sh
+
+currentval=$(hyprctl getoption decoration:drop_shadow | grep 'int: ' | cut -d' ' -f2)
+
+if [ $currentval -eq 1 ]; then
+  hyprctl --batch "\
+    keyword general:gaps_in 0; \
+    keyword general:gaps_out 0; \
+    keyword decoration:rounding 0; \
+    keyword decoration:drop_shadow 0"
+else
+  hyprctl --batch "\
+    keyword general:gaps_in 5; \
+    keyword general:gaps_out 0,10,10,10; \
+    keyword decoration:rounding 10; \
+    keyword decoration:drop_shadow 1"
+fi

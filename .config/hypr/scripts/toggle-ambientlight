@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if pgrep legion-kb-rgb; then
+  killall legion-kb-rgb
+  legion-kb-rgb load-profile -p $HOME/Documents/rgb
+else
+  legion-kb-rgb load-profile -p $HOME/Documents/ambientlight
+fi
+

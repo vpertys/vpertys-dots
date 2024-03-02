@@ -1,0 +1,150 @@
+{
+    "layer": "top",
+    "spacing": 1,
+    "modules-left": ["hyprland/workspaces", "custom/media", "cava"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["tray", "wireplumber", "network", "cpu", "memory", "temperature", "battery", "clock", "custom/logout"],
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "11": "",
+            "12": "",
+            "13": "",
+            "14": "",
+            "15": ""
+        }
+    },
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) — Ablaze Floorp": "$1",
+            "(.*) - Chromium": "$1",
+            "ZapZap (.*)": "WhatsApp",
+            "Vesktop": "Discord",
+            "Spotify Free": "Spotify"
+        }
+    },
+    "tray": {
+        "spacing": 10,
+        "reverse-direction": true
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "<span color='white'>{usage}%</span> ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "<span color='white'>{}%</span> "
+    },
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 85,
+        "format": "<span color='white'>{temperatureC}°C</span> {icon}",
+        "format-icons": ["", "", ""]
+    },
+    "backlight": {
+        "format": "{percent}% "
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15 
+        },
+        "format": "<span color='white'>{capacity}%</span> {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    },
+//    "network": {
+//        // "interface": "wlp2*", // (Optional) To force the use of this interface
+//        "format-wifi": "{essid} ({signalStrength}%) ",
+//        "format-ethernet": "{ipaddr}/{cidr} ",
+//        "tooltip-format": "{ifname} via {gwaddr} ",
+//        "format-linked": "{ifname} (No IP) ",
+//        "format-disconnected": "Disconnected ⚠",
+//        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+//        // "on-click": "nm-connection-editor"
+//    },
+    "network": {
+        "interval": 2,
+        "format": "<span color='white'>{bandwidthDownBytes:>}</span><span font='FontAwesome6Pro'> ↓</span><span color='white'> {bandwidthUpBytes:>}</span><span font='FontAwesome6Pro'> ↑</span>",
+        "format-disconnected": "Disconnected <span font='FontAwesome6Pro'>⚠</span>",
+        "tooltip-format": "{essid}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        "scroll-step": 1,
+        "format": "<span color='white'>{volume}%</span> {icon}",
+        "format-bluetooth": "<span color='white'>{volume}%</span> {icon} ",
+        "format-bluetooth-muted": "{icon} ",
+        "format-muted": "",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click-right": "pavucontrol",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "ignored-sinks": ["JamesDSP Sink"]
+    },
+    "wireplumber": {
+        "scroll-step": 1,
+        "format": "<span color='white'>{volume}%</span> {icon}",
+        "format-muted": "",
+        "format-icons": ["", "", ""],
+        "on-click-right": "pavucontrol",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "ignored-sinks": ["JamesDSP Sink"]
+    },
+    "custom/media": {
+        "format": "{}",
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl --player=spotify play-pause",
+        "on-scroll-up": "playerctl --player=spotify next",
+        "on-scroll-down": "playerctl --player=spotify previous",
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"
+    },
+    "custom/logout": {
+        "format": "<span font='FontAwesome6Pro'>⏻</span>",
+        "tooltip": false,
+        "on-click": "wlogout"
+    },
+    "cava": {
+        "framerate": 60,
+        "autosens": 0,
+        "sleep_timer": 3,
+        "sensitivity": 6,
+        "bars": 14,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "hide_on_silence": true,
+        "method": "pipewire",
+        "source": "jamesdsp_sink",
+        "stereo": false,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 1,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "on-scroll-up": "playerctl --player=spotify volume 0.02+",
+        "on-scroll-down": "playerctl --player=spotify volume 0.02-"
+    }
+}
+

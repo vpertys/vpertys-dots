@@ -1,0 +1,5 @@
+#!/bin/sh
+
+hyprctl dispatch exec '[workspace 15; float; size 950 510; move 70 610] kitty -o confirm_os_window_close=0 sh -c "sleep 0.5; cmatrix -C cyan"'
+hyprctl dispatch exec '[workspace 15; float; size 670 290; move 210 200] kitty'
+hyprctl dispatch exec '[workspace 15; float; size 100 100; move 1980 1275; stayfocused] kitty -o confirm_os_window_close=0'

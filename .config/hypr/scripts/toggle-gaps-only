@@ -1,0 +1,9 @@
+#!/bin/sh
+
+currentval=$(hyprctl getoption master:no_gaps_when_only | grep 'int: ' | cut -d' ' -f2)
+
+if [ $currentval -eq 1 ]; then
+  hyprctl keyword master:no_gaps_when_only false
+else
+  hyprctl keyword master:no_gaps_when_only true
+fi
